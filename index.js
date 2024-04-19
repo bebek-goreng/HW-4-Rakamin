@@ -1,23 +1,29 @@
 // HW-4 Rakamin Academy
 
-// 1. Array 1 - 100 dan array ganjil genap
+// 1. Array 100 element dengan nilai random 1 - 50 dan array ganjil genap masze
 
-function ganjilGenap(jumlah) {
-    const nilaiArray = Array.from({ length: jumlah }, (_, index) => index + 1);
+function nilaiRandom() {
+    return Math.floor(Math.random() * 50) + 1;
+}
+
+let randomArray = Array.from({ length: 100 }, nilaiRandom)
+
+console.log("Nilai array random 1-50 sebanyak 100 element jeng jeng jeng:", randomArray);
+
+function ganjilGenap(arr) {
 
     let ganjil = [];
     let genap = [];
 
-    for (let i = 0; i < nilaiArray.length; i++) {
-        nilaiArray[i] % 2 !== 0 ? ganjil.push(nilaiArray[i]) : genap.push(nilaiArray[i]);
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] % 2 !== 0 ? ganjil.push(arr[i]) : genap.push(arr[i]);
     }
 
-    return { nilaiArray, ganjil, genap };
+    return { ganjil, genap };
 }
 
-const { nilaiArray, ganjil, genap } = ganjilGenap(100);
+const { ganjil, genap } = ganjilGenap(randomArray);
 
-console.log("Nilai array 1-100:", nilaiArray)
 console.log("Nilai ganjil:", ganjil);
 console.log("Nilai genap:", genap);
 
@@ -29,9 +35,12 @@ function minMax(arr) {
     let max = arr[0];
 
     for (let i = 0; i < arr.length; i++) {
-        arr[i] < min ? min = arr[i] : max = arr[i];
+        if (arr[i] < min) {
+            min = arr[i];
+        } else if (arr[i] > max) {
+            max = arr[i];
+        }
     }
-
     return { min, max };
 }
 
@@ -48,13 +57,11 @@ function totalNilai(arrGanjil, arrGenap) {
     let totalGenap = 0;
 
     for (let i = 0; i < arrGanjil.length; i++) {
-        if (i < arrGanjil.length) {
-            totalganjil += arrGanjil[i];
-        }
+        totalganjil += arrGanjil[i];
+    }
 
-        if (i < arrGenap.length) {
-            totalGenap += arrGenap[i];
-        }
+    for(let i = 0; i < arrGenap.length; i++){
+        totalGenap += arrGenap[i];
     }
 
     return { totalganjil, totalGenap };
