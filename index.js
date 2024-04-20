@@ -16,7 +16,7 @@ function ganjilGenap(arr) {
     let genap = [];
 
     for (let i = 0; i < arr.length; i++) {
-        arr[i] % 2 !== 0 ? ganjil.push(arr[i]) : genap.push(arr[i]);
+        i % 2 !== 0 ? ganjil.push(arr[i]) : genap.push(arr[i]);
     }
 
     return { ganjil, genap };
@@ -60,7 +60,7 @@ function totalNilai(arrGanjil, arrGenap) {
         totalganjil += arrGanjil[i];
     }
 
-    for(let i = 0; i < arrGenap.length; i++){
+    for (let i = 0; i < arrGenap.length; i++) {
         totalGenap += arrGenap[i];
     }
 
